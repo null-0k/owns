@@ -1,7 +1,7 @@
 # --- 依存パッケージ -------------------------
 node_modules/
 
-# --- Hardhat / Foundry の生成物 -------------
+# --- Hardhat -------------
 artifacts/
 cache/
 
@@ -15,6 +15,6 @@ build/
 .env
 .env.*
 
-# --- macOS やエディタのゴミ -----------------
+# --- macOSやエディタのゴミ -----------------
 .DS_Store
 .vscode/
