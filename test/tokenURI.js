@@ -7,8 +7,8 @@ describe("OwnsToken.tokenURI", function () {
     let font, mnemonic, builder, token;
 
     const WORDS = JSON.parse(
-        fs.readFileSync("files/json/mnemonic.json", "utf8")
-    ).mnemonic;
+        fs.readFileSync("files/json/non-mnemonic.json", "utf8")
+    )["non-mnemonic"];
 
     const CAVEAT = JSON.parse(
         fs.readFileSync("files/json/caveat.json", "utf8")
@@ -69,7 +69,7 @@ describe("OwnsToken.tokenURI", function () {
         await token.connect(user).safeMint(1, { value: ethers.parseEther("0.01") });
         const uri = await token.tokenURI(0);
         expect(uri).to.be.a("string").and.not.equal("");
-        console.log(uri);
+        // console.log(uri);
 
         const path = "output";                     
         if (!fs.existsSync(path)) {
