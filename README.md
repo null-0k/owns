@@ -18,7 +18,7 @@ npx hardhat test
 This project leverages Hardhat’s built-in gas reporter.  
 Run your tests with gas reporting enabled like this:
 
-npx hardhat test
+    npx hardhat test
 
 ---
 
