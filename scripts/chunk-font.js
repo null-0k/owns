@@ -1,4 +1,3 @@
-// chunk-font.js  （旧 split-to-json.js）
 const fs   = require('fs');
 const path = require('path');
 
