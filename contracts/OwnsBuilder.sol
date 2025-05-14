@@ -132,7 +132,7 @@ contract OwnsBuilder is Ownable, IOwnsBuilder {
 
         return Seed({
             mnemonicSeed    : keccak256(abi.encodePacked(randomness)),
-            mnemonicStrength: Utils.random(randomness, strengthIndex) << 5 //Must be a multiple of 32
+            mnemonicStrength: (Utils.random(randomness, strengthIndex) + 1) << 5 // Must be a multiple of 32 from 32 to 256
         });
     }
 }
