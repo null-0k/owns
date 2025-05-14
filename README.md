@@ -1,28 +1,61 @@
-## 注意
-本リポジトリのコードは **研究・学習目的** に提供されています。  
-**未監査** のため、実運用ウォレットや価値を扱う環境では **絶対に使用しないでください**。  
-使用は自己責任でお願いします。
+### Notice
+The code in this repository is provided **solely for research and educational purposes**.  
+It has **not been audited**, so **do not** use it in production wallets or any environment that holds real value.  
+Use at your own risk.
 
-## テストの実行
+---
 
-    npx hardhat test
+## Running Tests
+
+```bash
+npx hardhat test
+```
 
 ---
 
 ## Gas Report
 
-このリポジトリでは Hardhat のガスレポート機能を利用しています。
-下記コマンドでテスト実行と同時にガスレポートを出力できます。
+This project leverages Hardhat’s built-in gas reporter.  
+Run your tests with gas reporting enabled like this:
 
-    REPORT_GAS=true
-    
+npx hardhat test
 
-## リアルタイムのガス代を計測する場合
+---
 
-リアルタイムでガス代を計測・表示するためには、Gas Priceの取得先となるサービスのAPIキーが必要です。
-本リポジトリのサンプルではCoinMarketCapのAPIを使用しています。
-hardHat.config.jsで以下のようにCoinMarketCap APIキーを設定してください。
+## Measuring Real-Time Gas Prices
 
-       COINMARKETCAP_API_KEY=YOUR_COINMARKETCAP_API_KEY
+To display real-time gas prices (and fiat values) you need an API key from a gas-price data provider.  
+The sample configuration in this repo uses **CoinMarketCap**.
 
+1. Get an API key from CoinMarketCap: <https://coinmarketcap.com/api/>
 
+2. Create or edit **`.env`** (or **`.env.local`**) and add:
+
+   ```dotenv
+   COINMARKETCAP_API_KEY=YOUR_COINMARKETCAP_API_KEY
+   REPORT_GAS=true
+   ```
+
+3. Ensure `hardhat.config.ts` / `hardhat.config.js` includes:
+
+```js
+require("@nomicfoundation/hardhat-toolbox");
+
+module.exports = {
+     gasReporter: {
+       enabled: true,
+       currency: "USD",
+       token: "ETH",
+       coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+       // To use a different provider:
+       // gasPriceApi: "https://ethgasstation.info/api/ethgasAPI.json"
+     },
+     // ...other settings
+   };
+   ```
+
+---
+
+### References
+- CoinMarketCap API: <https://coinmarketcap.com/api/>
+- Hardhat Documentation: <https://hardhat.org/>
